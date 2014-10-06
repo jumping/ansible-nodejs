@@ -1,3 +1,4 @@
 ---
+nodejs_do_bower_install: false
 nodejs_global_packages: []
 nodejs_user: '{{ ansible_ssh_user }}'

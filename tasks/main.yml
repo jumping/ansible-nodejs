@@ -27,3 +27,18 @@
   tags: 'nodejs'
   npm: 'path={{ nodejs_app_root }}'
   when: 'nodejs_app_root is defined'
+
+- name: 'Ensure bower is installed'
+  tags: 'nodejs'
+  sudo: 'yes'
+  npm: >
+  	name=bower
+  	state=present
+  	global=yes
+  	registry=https://registry.npmjs.org
+  when: 'nodejs_do_bower_install == true and nodejs_app_root is defined' 
+
+- name: 'Install local bower packages'
+  tags: 'nodejs'
+  command: 'bower install chdir={{ nodejs_app_root }}'
+  when: 'nodejs_do_bower_install == true and nodejs_app_root is defined' 
