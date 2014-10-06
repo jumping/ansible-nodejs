@@ -32,10 +32,10 @@
   tags: 'nodejs'
   sudo: 'yes'
   npm: >
-  	name=bower
-  	state=present
-  	global=yes
-  	registry=https://registry.npmjs.org
+    name=bower
+    state=present
+    global=yes
+    registry=https://registry.npmjs.org
   when: 'nodejs_do_bower_install == true and nodejs_app_root is defined' 
 
 - name: 'Install local bower packages'
