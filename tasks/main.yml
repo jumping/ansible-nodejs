@@ -1,17 +1,20 @@
 ---
 - name: 'Add Node.js PPA'
+  tags: 'nodejs'
   sudo: 'yes'
   apt_repository: >
     repo=ppa:chris-lea/node.js
     state=present
 
 - name: 'Install Node.js'
+  tags: 'nodejs'
   sudo: 'yes'
   apt: >
     pkg=nodejs
     update-cache=yes
 
 - name: 'Install npm global packages'
+  tags: 'nodejs'
   sudo: 'yes'
   npm: >
     name={{ item }}
@@ -21,5 +24,6 @@
   with_items: nodejs_global_packages
 
 - name: 'Install local npm packages'
+  tags: 'nodejs'
   npm: 'path={{ nodejs_app_root }}'
   when: 'nodejs_app_root is defined'
