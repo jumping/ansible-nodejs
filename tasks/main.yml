@@ -1,2 +1,25 @@
 ---
-# tasks file for nodejs
+- name: 'Add Node.js PPA'
+  sudo: 'yes'
+  apt_repository: >
+    repo=ppa:chris-lea/node.js
+    state=present
+
+- name: 'Install Node.js'
+  sudo: 'yes'
+  apt: >
+    pkg=nodejs
+    update-cache=yes
+
+- name: 'Install npm global packages'
+  sudo: 'yes'
+  npm: >
+    name={{ item }}
+    state=present
+    global=yes
+    registry=http://registry.npmjs.org
+  with_items: nodejs_global_packages
+
+- name: 'Install local npm packages'
+  npm: 'path={{ nodejs_app_root }}'
+  when: 'nodejs_app_root is defined'
