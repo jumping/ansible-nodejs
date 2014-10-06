@@ -40,5 +40,7 @@
 
 - name: 'Install local bower packages'
   tags: 'nodejs'
+  sudo: 'no'
+  remote_user: '{{ nodejs_user }}'
   command: 'bower install chdir={{ nodejs_app_root }}'
   when: 'nodejs_do_bower_install == true and nodejs_app_root is defined' 
