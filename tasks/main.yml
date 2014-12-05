@@ -1,4 +1,13 @@
 ---
+- name: 'Install dependencies'
+  tags: 'nodejs'
+  sudo: 'yes'
+  apt: >
+    pkg={{ item }}
+    update-cache=yes
+  with_items:
+    - 'git'
+
 - name: 'Add Node.js PPA'
   tags: 'nodejs'
   sudo: 'yes'
@@ -9,13 +18,12 @@
 - name: 'Install Node.js'
   tags: 'nodejs'
   sudo: 'yes'
-  apt: >
-    pkg=nodejs
-    update-cache=yes
+  apt: pkg=nodejs
 
 - name: 'Install npm global packages'
   tags: 'nodejs'
   sudo: 'yes'
+  sudo_user: '{{ nodejs_user }}'
   npm: >
     name={{ item }}
     state=present
@@ -36,11 +44,11 @@
     state=present
     global=yes
     registry=https://registry.npmjs.org
-  when: 'nodejs_do_bower_install == true and nodejs_app_root is defined' 
+  when: 'nodejs_do_bower_install == true and nodejs_app_root is defined'
 
 - name: 'Install local bower packages'
   tags: 'nodejs'
   sudo: 'no'
   remote_user: '{{ nodejs_user }}'
   command: 'bower install chdir={{ nodejs_app_root }}'
-  when: 'nodejs_do_bower_install == true and nodejs_app_root is defined' 
+  when: 'nodejs_do_bower_install == true and nodejs_app_root is defined'
