@@ -33,6 +33,7 @@
   with_items: nodejs_global_packages
 
 - name: 'Install local npm packages'
+  sudo: 'no'
   tags:
     - 'nodejs'
     - 'npm'
