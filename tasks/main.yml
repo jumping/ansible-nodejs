@@ -21,7 +21,9 @@
   apt: pkg=nodejs
 
 - name: 'Install npm global packages'
-  tags: 'nodejs'
+  tags:
+    - 'nodejs'
+    - 'npm'
   sudo: 'yes'
   npm: >
     name={{ item }}
@@ -31,12 +33,16 @@
   with_items: nodejs_global_packages
 
 - name: 'Install local npm packages'
-  tags: 'nodejs'
+  tags:
+    - 'nodejs'
+    - 'npm'
   npm: 'path={{ nodejs_app_root }}'
   when: 'nodejs_app_root is defined'
 
 - name: 'Ensure bower is installed'
-  tags: 'nodejs'
+  tags:
+    - 'nodejs'
+    - 'bower'
   sudo: 'yes'
   npm: >
     name=bower
@@ -46,7 +52,9 @@
   when: 'nodejs_do_bower_install == true and nodejs_app_root is defined'
 
 - name: 'Install local bower packages'
-  tags: 'nodejs'
+  tags:
+    - 'nodejs'
+    - 'bower'
   sudo: 'no'
   remote_user: '{{ nodejs_user }}'
   command: 'bower install chdir={{ nodejs_app_root }}'
