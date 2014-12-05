@@ -23,7 +23,6 @@
 - name: 'Install npm global packages'
   tags: 'nodejs'
   sudo: 'yes'
-  sudo_user: '{{ nodejs_user }}'
   npm: >
     name={{ item }}
     state=present
