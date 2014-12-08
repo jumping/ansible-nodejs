@@ -50,7 +50,9 @@
     state=present
     global=yes
     registry=https://registry.npmjs.org
-  when: 'nodejs_do_bower_install == true and nodejs_app_root is defined'
+  when:
+    - 'nodejs_do_bower_install == yes'
+    - 'nodejs_app_root is defined'
 
 - name: 'Install local bower packages'
   tags:
@@ -59,4 +61,6 @@
   sudo: 'no'
   remote_user: '{{ nodejs_user }}'
   command: 'bower install chdir={{ nodejs_app_root }}'
-  when: 'nodejs_do_bower_install == true and nodejs_app_root is defined'
+  when:
+    - 'nodejs_do_bower_install == yes'
+    - 'nodejs_app_root is defined'
