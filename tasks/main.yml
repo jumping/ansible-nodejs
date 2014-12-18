@@ -59,6 +59,7 @@
   tags:
     - 'nodejs'
     - 'bower'
+  sudo: 'no'
   remote_user: '{{ nodejs_user }}'
   command: 'bower install chdir={{ nodejs_app_root }}'
   when:
