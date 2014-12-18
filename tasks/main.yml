@@ -60,6 +60,7 @@
     - 'nodejs'
     - 'bower'
   sudo: 'no'
+  sudo_user: '{{ nodejs_user }}'
   remote_user: '{{ nodejs_user }}'
   command: 'bower install chdir={{ nodejs_app_root }}'
   when:
