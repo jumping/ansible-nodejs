@@ -25,7 +25,7 @@ The default variables are as follows:
           	- 'forever'
           	- 'gulp'
           	- 'nodemon'
-          nodejs_app_home: '/path/to/my/app'    # If defined, 'npm install' will be run here
+          nodejs_app_root: '/path/to/my/app'    # If defined, 'npm install' will be run here
           nodejs_do_bower_install: true         # If true and nodejs_app_home is defined, 'bower install' will be run
 
 # License
