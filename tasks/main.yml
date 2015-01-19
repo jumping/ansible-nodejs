@@ -21,6 +21,18 @@
   sudo: 'yes'
   apt: pkg=nodejs
 
+- name: 'Update npm'
+  tags:
+    - 'nodejs'
+    - 'npm'
+  sudo: 'yes'
+  npm: >
+    name=npm
+    state=latest
+    global=yes
+    registry=https://registry.npmjs.org
+  when: 'nodejs_update_npm | bool'
+
 - name: 'Install npm global packages'
   tags:
     - 'nodejs'
