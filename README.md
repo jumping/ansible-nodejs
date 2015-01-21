@@ -11,6 +11,7 @@ Tested on Ubuntu 12.04 Server.
 The default variables are as follows:
 
     nodejs_do_bower_install: false
+    nodejs_update_npm: false
     nodejs_global_packages: []
     nodejs_user: '{{ ansible_ssh_user }}'
 
@@ -19,6 +20,7 @@ The default variables are as follows:
     - hosts: 'servers'
       roles:
         - role: 'ssilab.nodejs'
+          nodejs_update_npm: true               # If true, install the latest npm immediately after installing Node.js
           nodejs_user: 'hercules'
           nodejs_global_packages:
           	- 'bower'
