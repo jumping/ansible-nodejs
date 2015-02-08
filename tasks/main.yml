@@ -19,7 +19,9 @@
 - name: 'Install Node.js'
   tags: 'nodejs'
   sudo: 'yes'
-  apt: pkg=nodejs
+  apt: >
+    pkg=nodejs
+    update_cache=true
 
 - name: 'Update npm'
   tags:
