@@ -14,6 +14,8 @@ The default variables are as follows:
     nodejs_update_npm: false
     nodejs_global_packages: []
     nodejs_user: '{{ ansible_ssh_user }}'
+    nodejs_major_version: 0
+    nodejs_minor_version: 10
 
 ## Example Playbook
 
@@ -21,6 +23,8 @@ The default variables are as follows:
       roles:
         - role: 'ssilab.nodejs'
           nodejs_update_npm: true               # If true, install the latest npm immediately after installing Node.js
+          nodejs_major_version: 0
+          nodejs_minor_version: 12              # Installs version 0.12.*
           nodejs_user: 'hercules'
           nodejs_global_packages:
           	- 'bower'
