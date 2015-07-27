@@ -8,20 +8,18 @@
   with_items:
     - 'git'
     - 'build-essential'
+    - 'curl'
 
 - name: 'Add Node.js PPA'
   tags: 'nodejs'
   sudo: 'yes'
-  apt_repository: >
-    repo=ppa:chris-lea/node.js
-    state=present
+  shell: "curl --silent --location https://deb.nodesource.com/setup_{{ nodejs_major_version }}.{{ nodejs_minor_version }} | bash -"
 
 - name: 'Install Node.js'
   tags: 'nodejs'
   sudo: 'yes'
   apt: >
     pkg=nodejs
-    update_cache=true
 
 - name: 'Update npm'
   tags:
