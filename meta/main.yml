@@ -1,10 +1,10 @@
 ---
 galaxy_info:
   author: 'Rohan Liston'
-  description: 'Installs the latest version of Node.js from the chris-lea PPA.'
-  company: 'SSIL'
+  description: 'Installs a specified version of NodeJS or Version 5.x'
+  company: 'DSTIL'
   license: 'BSD'
-  min_ansible_version: 1.6
+  min_ansible_version: 1.9
   platforms:
   - name: 'Ubuntu'
     versions:
