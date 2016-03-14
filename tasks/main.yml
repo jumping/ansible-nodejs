@@ -48,7 +48,7 @@
     state=present
     global=yes
     registry=http://registry.npmjs.org
-  with_items: nodejs_global_packages
+  with_items: '{{ nodejs_global_packages }}'
 
 - name: 'Install local npm packages'
   tags:
