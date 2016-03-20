@@ -1,7 +1,8 @@
 ---
 - name: 'Install dependencies'
   tags: 'nodejs'
-  sudo: 'yes'
+  become: 'yes'
+  become_method: 'sudo'
   apt: >
     pkg={{ item }}
     update-cache=yes
@@ -12,12 +13,14 @@
 
 - name: 'Add Node.js PPA'
   tags: 'nodejs'
-  sudo: 'yes'
+  become: 'yes'
+  become_method: 'sudo'
   shell: "curl --silent --location https://deb.nodesource.com/setup_{{ nodejs_major_version }}.{{ nodejs_minor_version }} | bash -"
 
 - name: 'Install Node.js'
   tags: 'nodejs'
-  sudo: 'yes'
+  become: 'yes'
+  become_method: 'sudo'
   apt: >
     pkg=nodejs
 
@@ -25,7 +28,8 @@
   tags:
     - 'nodejs'
     - 'npm'
-  sudo: 'yes'
+  become: 'yes'
+  become_method: 'sudo'
   npm: >
     name=npm
     state=latest
@@ -37,16 +41,16 @@
   tags:
     - 'nodejs'
     - 'npm'
-  sudo: 'yes'
+  become: 'yes'
+  become_method: 'sudo'
   npm: >
     name={{ item }}
     state=present
     global=yes
     registry=http://registry.npmjs.org
-  with_items: nodejs_global_packages
+  with_items: '{{ nodejs_global_packages }}'
 
 - name: 'Install local npm packages'
-  sudo: 'no'
   tags:
     - 'nodejs'
     - 'npm'
@@ -57,7 +61,8 @@
   tags:
     - 'nodejs'
     - 'bower'
-  sudo: 'yes'
+  become: 'yes'
+  become_method: 'sudo'
   npm: >
     name=bower
     state=present
@@ -71,7 +76,6 @@
   tags:
     - 'nodejs'
     - 'bower'
-  sudo: 'no'
   remote_user: '{{ nodejs_user }}'
   command: 'bower install chdir={{ nodejs_app_root }}'
   when:

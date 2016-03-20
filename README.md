@@ -1,6 +1,6 @@
 # Node.js role for Ansible
 
-Installs the latest version of Node.js from the chris-lea PPA.
+Installs either a specific version of NodeJS specified, or it will default version 5.x.
 
 ## Requirements
 
@@ -33,6 +33,17 @@ The default variables are as follows:
           	- 'nodemon'
           nodejs_app_root: '/path/to/my/app'    # If defined, 'npm install' will be run here
           nodejs_do_bower_install: true         # If true and nodejs_app_home is defined, 'bower install' will be run
+
+# Supported NodeJS versions
+
+| NodeJS Version | `nodejs_major_version` | `nodejs_minor_version` |
+| -------------- | ---------------------- | ---------------------- |
+| 5.x            | 5                      | 'x'                    |
+| 4.x            | 4                      | 'x'                    |
+| 0.12           | 0                      | 12                     |
+| 0.10           | 0                      | 10                     |
+
+More information on the different supported version can be found on this [Github repo](https://github.com/nodesource/distributions).
 
 # License
 
